@@ -2,27 +2,27 @@
 
 const calculateChange = function calculateChange(amount) {
   //checking if the amount is  below or equal to 0 or  amountis greater than 100 and any other character
-  if (typeof amount !== "number" || !Number.isFinite(amount)) {
-    console.log("Error: the amount must be a valid number");
+  if (typeof amount !== 'number' || !Number.isFinite(amount)) {
+    console.log('Error: the amount must be a valid number');
     return;
   }
   if (amount > 100) {
-    console.log("Error: the number is too large");
+    console.log('Error: the number is too large');
     return;
   }
   if (amount <= 0) {
-    console.log("Error: the amount is invalid");
+    console.log('Error: the amount is invalid');
     return;
   }
   //converting the amount to cents
   let cents = Math.round(amount * 100);
   //assigning each denomination for each value
   const denominations = [
-    { name: "dollars", value: 100 },
-    { name: "quarters", value: 25 },
-    { name: "dime", value: 10 },
-    { name: "nickel", value: 5 },
-    { name: "penny", value: 1 },
+    { name: 'dollars', value: 100 },
+    { name: 'quarters', value: 25 },
+    { name: 'dime', value: 10 },
+    { name: 'nickel', value: 5 },
+    { name: 'penny', value: 1 },
   ];
   const result = [];
   // performing the calculation and printing value
@@ -32,8 +32,8 @@ const calculateChange = function calculateChange(amount) {
     if (count > 0) {
       let coinName = coin.name;
 
-      if (count > 1 && coin.name === "penny") {
-        coinName = "pennies";
+      if (count > 1 && coin.name === 'penny') {
+        coinName = 'pennies';
       }
 
       result.push(`${count} ${coinName}`);
@@ -41,7 +41,7 @@ const calculateChange = function calculateChange(amount) {
     }
   });
 
-  console.log(result.length > 0 ? result.join(", ") : "0 coins");
+  console.log(result.length > 0 ? result.join(', ') : '0 coins');
 };
 
 // Sample test cases
@@ -55,6 +55,6 @@ calculateChange(150.11);
 // Add additional test cases here
 calculateChange(150);
 calculateChange(0);
-calculateChange("a");
+calculateChange('a');
 calculateChange();
 calculateChange(5.55);

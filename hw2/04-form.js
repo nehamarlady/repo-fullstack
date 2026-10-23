@@ -4,7 +4,7 @@ const port = process.env.PORT || 5001;
 
 // http://localhost:5001/submit should return all the data the user entered
 
-const express = require("express");
+const express = require('express');
 
 const app = express();
 
@@ -14,9 +14,9 @@ app.use(
   }),
 );
 
-app.get("/form", (req, res) => {
+app.get('/form', (req, res) => {
   res.status(200);
-  res.set({ "Content-Type": "text/html" });
+  res.set({ 'Content-Type': 'text/html' });
   res.write('<form action="/submit" method= "post">');
   res.write('<label for="name"> usernameame: </label>');
   res.write('<input type="text" name="name" id="name"><br><br>');
@@ -30,11 +30,17 @@ app.get("/form", (req, res) => {
   res.end();
 });
 
-app.post("/submit", (req, res) => {
+app.post('/submit', (req, res) => {
   console.log(req.body);
   console.log(`Name: ${req.body.name}`);
   console.log(`Email: ${req.body.email}`);
-  res.send(`Form Submitted`);
+  res.send(`
+    <h1>Form Submitted</h1>
+    <p>Name: ${req.body.name}</p>
+    <p>Email: ${req.body.email}</p>
+    <p>Comments: ${req.body.comments || 'No comments provided'}</p>
+    <p>Newsletter signup: ${req.body.newsletter ? 'Yes' : 'No'}</p>
+  `);
   res.end();
 });
 
