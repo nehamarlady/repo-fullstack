@@ -1,7 +1,11 @@
 /** Exercise 01 - Coins **/
 
 const calculateChange = function calculateChange(amount) {
-  //checking if the amount is  below or equal to 0 or  amountis greater than 100
+  //checking if the amount is  below or equal to 0 or  amountis greater than 100 and any other character
+  if (typeof amount !== "number" || !Number.isFinite(amount)) {
+    console.log("Error: the amount must be a valid number");
+    return;
+  }
   if (amount > 100) {
     console.log("Error: the number is too large");
     return;
@@ -50,3 +54,8 @@ calculateChange(150.11);
 // $150.11 ==> Error: the number is too large
 
 // Add additional test cases here
+calculateChange(150);
+calculateChange(0);
+calculateChange("a");
+calculateChange();
+calculateChange(5.55);
