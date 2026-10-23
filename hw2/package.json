@@ -1,4 +1,10 @@
 {
+  "scripts": {
+    "coins": "node 01-coins.js",
+    "node-routing": "node 02-node-routing.js",
+    "express-routing": "node 03-express-routing.js",
+    "form": "node 04-form.js"
+  },
   "dependencies": {
     "express": "^4.21.2"
   }

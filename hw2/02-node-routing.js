@@ -12,18 +12,40 @@ const port = process.env.PORT || 5001;
 // For other routes, such as http://localhost:5001/other, this exercise should return a status code 404 with '404 - page not found' in html format
 
 const server = http.createServer((req, res) => {
-  const routes = [
-    'welcome',
-    'redirect',
-    'redirected',
-    'cache',
-    'cookie',
-    'other',
-  ];
+  const routes = ['welcome', 'redirect', 'redirected', 'cache', 'cookie', 'other'];
 
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write('Node Routing Exercise');
-  res.end();
+  const path = req.url;
+
+  if (path === '/welcome') {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write('Welcome to Full Stack development class');
+    res.end();
+  } else if (path === '/redirect') {
+    res.writeHead(302, { Location: '/redirected' });
+    res.end();
+  } else if (path === '/redirected') {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write('This is a redirected Page');
+    res.end();
+  } else if (path === '/cache') {
+    res.writeHead(200, {
+      'Content-Type': 'text/html',
+      'Cache-Control': 'public, max-age=86400',
+    });
+    res.write('this resource was cached');
+    res.end();
+  } else if (path === '/cookie') {
+    res.writeHead(200, {
+      'Content-Type': 'text/plain',
+      'Set-Cookie': 'hello=world',
+    });
+    res.write('cookies… yummm');
+    res.end();
+  } else {
+    res.writeHead(404, { 'Content-Type': 'text/html' });
+    res.write('404 - page not found');
+    res.end();
+  }
 });
 
 server.listen(port, () => {
