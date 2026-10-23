@@ -30,12 +30,11 @@ const calculateChange = function calculateChange(amount) {
     const count = Math.floor(cents / coin.value);
 
     if (count > 0) {
-      const coinName =
-        count === 1
-          ? coin.name
-          : coin.name === "penny"
-            ? "pennies"
-            : `${coin.name}`;
+      let coinName = coin.name;
+
+      if (count > 1 && coin.name === "penny") {
+        coinName = "pennies";
+      }
 
       result.push(`${count} ${coinName}`);
       cents %= coin.value;
