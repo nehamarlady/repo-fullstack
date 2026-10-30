@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h2 Countries by Region
+
+  each countryNames, regionName in regions
+    section
+      h3= regionName
+
+      p
+        strong Number of countries:
+        |  #{countryNames.length}
+
+      ul
+        each countryName in countryNames
+          li= countryName
