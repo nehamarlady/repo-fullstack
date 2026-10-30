@@ -1,0 +1,31 @@
+
+extends layout
+
+block content
+  h2 Most Populous Countries
+
+  p Countries with a population of at least 50 million.
+
+  p Total countries: #{populousCountries.length}
+
+  each country in populousCountries
+    article.country-card
+      if country.names && country.names.common
+        h3= country.names.common
+      else
+        h3 Name not available
+
+      p
+        strong Population:
+        |  #{country.population.toLocaleString()}
+
+      if country.flag && country.flag.url_png
+        img(
+          src=country.flag.url_png
+          alt="Country flag"
+          width="160"
+        )
+      else if country.flag && country.flag.emoji
+        p Flag: #{country.flag.emoji}
+      else
+        p Flag: Not available

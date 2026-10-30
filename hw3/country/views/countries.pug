@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h2 All Countries
+
+  p Total countries: #{countries.length}
+
+  table(border="1")
+    thead
+      tr
+        th Country
+        th Capital
+        th Leader
+    tbody
+      each country in countries
+        tr
+          td= country.names.common
+          td
+            if country.capitals && country.capitals.length > 0
+              each capital, index in country.capitals
+                if index > 0
+                  | ,
+                = capital.name
+            else
+              | Not available
+          td Not available

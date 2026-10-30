@@ -1,0 +1,22 @@
+//-It creates a placeholder. Each page that extends layout.pug can provide its own content in that location.
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title REST Countries Explorer
+  body
+    header
+      h1 REST Countries Explorer
+
+      nav
+        a(href="/home") Home
+        |  |
+        a(href="/countries") Countries
+        |  |
+        a(href="/populous") Populous Countries
+        |  |
+        a(href="/regions") Regions
+
+    main
+      block content
