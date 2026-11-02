@@ -66,7 +66,7 @@ Built an Express application using Pug as the template engine and the REST Count
 ### Features
 
 - **Home (`/home`):** Landing page for the application.
-- **Countries (`/countries`):** Displays all countries in alphabetical order, including available capital and leader information.
+- **Countries (`/countries`):** Countries (/countries): Displays all countries in alphabetical order, including available capital and currency name and symbol.
 - **Populous (`/populous`):** Displays countries with populations of at least 50 million, sorted from highest to lowest population. Includes population and flag information.
 - **Regions (`/regions`):** Groups countries by region and displays the number and names of countries in each region. Handles missing region and country-name information.
 

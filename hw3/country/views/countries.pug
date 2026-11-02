@@ -10,7 +10,8 @@ block content
       tr
         th Country
         th Capital
-        th Leader
+        th Currency Name
+        th Currency Symbol
     tbody
       each country in countries
         tr
@@ -23,4 +24,19 @@ block content
                 = capital.name
             else
               | Not available
-          td Not available
+          td
+            if country.currencies && country.currencies.length > 0
+              each currency, index in country.currencies
+                if index > 0
+                  | ,
+                = currency.name
+            else
+              | Not available
+          td
+            if country.currencies && country.currencies.length > 0
+              each currency, index in country.currencies
+                if index > 0
+                  | ,
+                = currency.symbol || 'Not available'
+            else
+              | Not available
