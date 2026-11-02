@@ -1,0 +1,11 @@
+{
+  "name": "hw3",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Fullstack Homework 3 - React, Socket.IO, and REST Countries",
+  "scripts": {
+    "start:react": "npm --prefix react start",
+    "start:socketio": "node socketio/index.js",
+    "start:country": "npm --prefix country start"
+  }
+}
