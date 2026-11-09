@@ -44,6 +44,16 @@ const fetchAllCountries = async () => {
     more = result.data.meta.more;
     offset += limit;
   }
+  const countriesWithoutPopulation = countries.filter(
+    (country) => !Number.isFinite(country.population),
+  );
+
+  if (countriesWithoutPopulation.length > 0) {
+    console.warn(
+      `Population data is missing or invalid for ${countriesWithoutPopulation.length} countries.`,
+      countriesWithoutPopulation.map((country) => country.names?.common),
+    );
+  }
 
   return countries;
 };
@@ -78,9 +88,7 @@ app.get('/populous', async (req, res) => {
     const countries = await fetchAllCountries();
 
     // Filter countries with a population of at least 50 million
-    const populousCountries = countries.filter(
-      (country) => Number.isFinite(country.population) && country.population >= 50000000,
-    );
+    const populousCountries = countries.filter((country) => country.population >= 50000000);
 
     // Sort countries from highest to lowest population
     populousCountries.sort((countryA, countryB) => countryB.population - countryA.population);
@@ -104,9 +112,9 @@ app.get('/regions', async (req, res) => {
         regionGroups[regionName] = [];
       }
 
-      regionGroups[regionName].push(
-        country.names && country.names.common ? country.names.common : 'Name not available',
-      );
+      const countryName = country.names?.common || 'Name not available';
+
+      regionGroups[regionName].push(countryName);
 
       return regionGroups;
     }, {});
